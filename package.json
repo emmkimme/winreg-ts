@@ -30,7 +30,8 @@
   "scripts": {
     "clean": "del-cli ./lib ./build ./dist",
     "build": "tsc",
-    "test": "mocha test"
+    "test": "mocha test",
+    "publication": "npm publish ./ --registry https://registry.npmjs.org"
   },
   "version": "1.0.0"
 }
