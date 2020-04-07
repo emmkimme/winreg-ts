@@ -1,5 +1,6 @@
 #winreg-ts
 Basically, it is a raw migration of the original project https://github.com/fresc81/node-winreg to typescript.
+We even keep the code formatting to ease the comparaison.
 We just added utf8 support.
 
 # MIT License
