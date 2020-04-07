@@ -1,0 +1,36 @@
+{
+  "description": "provides access to the windows registry through the REG tool",
+  "author": {
+    "name": "Emmanuel Kimmerlin"
+  },
+  "bugs": {
+    "url": "https://github.com/emmkimme/winreg-ts/issues"
+  },
+  "devDependencies": {
+    "del": "^5.1.0",
+    "del-cli": "^3.0.0",
+    "mocha": "^3.0.2",
+    "typescript": "^3.8.3",
+    "unit.js": "^2.0.0"
+  },
+  "homepage": "https://github.com/emmkimme/winreg-ts",
+  "keywords": [
+    "windows",
+    "registry",
+    "typescript"
+  ],
+  "license": "BSD-2-Clause",
+  "types": "lib/registry.d.ts",
+  "main": "lib/registry.js",
+  "name": "winreg-ts",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:emmkimme/winreg-ts.git"
+  },
+  "scripts": {
+    "clean": "del-cli ./lib ./build ./dist",
+    "build": "tsc",
+    "test": "mocha test"
+  },
+  "version": "1.0.0"
+}
