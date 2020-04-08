@@ -4,7 +4,7 @@ We even keep the code formatting and design to ease the comparaison and do not i
 We just add utf8 support from https://github.com/eskibear/node-winreg-utf8
 
 # Installation
-The following command installs node-winreg.
+The following command installs winreg-ts.
 ```bash
 npm install winreg-ts
 ```
