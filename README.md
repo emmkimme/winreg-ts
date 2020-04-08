@@ -1,8 +1,13 @@
-#winreg-ts
+# winreg-ts
 Basically, it is a raw migration of the original project https://github.com/fresc81/node-winreg to typescript.
 We even keep the code formatting and design to ease the comparaison and do not introduce regressions.
 We just add utf8 support from https://github.com/eskibear/node-winreg-utf8
 
+# Installation
+The following command installs node-winreg.
+```bash
+npm install winreg-ts
+```
 
 # Typescript
 ```

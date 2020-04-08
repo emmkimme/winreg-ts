@@ -6,7 +6,7 @@ test/
 examples/
 *.tgz
 debug.log
-
+jsdoc.conf.json
 gulpfile.js
 **/tsconfig*.*
 tslint.json
