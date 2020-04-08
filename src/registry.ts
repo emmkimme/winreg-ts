@@ -186,7 +186,7 @@ export interface RegistryItem {
 }
 
 class RegistryItemImpl implements RegistryItem {
-  constructor(protected _host: string, protected _hive: string, protected _key: string, protected _name: string, protected _type: string, protected _value: string, protected _arch: string) {
+  constructor(private _host: string, private _hive: string, private _key: string, private _name: string, private _type: string, private _value: string, private _arch: string) {
   }
 
   /* getters/setters */
@@ -289,11 +289,16 @@ export interface Options {
 
 export /* default */ class Registry {
   /* private members */
-  protected _host: string    // hostname
-  protected _hive: string;     // registry hive
-  protected _key: string     // registry key
-  protected _arch: string    // hive architecture
-  protected _utf8: boolean   // utf8 flag
+/** @internal */
+  private _host: string    // hostname
+/** @internal */
+  private _hive: string;     // registry hive
+/** @internal */
+  private _key: string     // registry key
+/** @internal */
+  private _arch: string    // hive architecture
+/** @internal */
+  private _utf8: boolean   // utf8 flag
 
   constructor(options?: Options) {
     const _options = options || {};
