@@ -287,7 +287,7 @@ export interface Options {
   readonly utf8?: boolean   // utf8 flag
 }
 
-export class Registry {
+export /* default */ class Registry {
   /* private members */
   protected _host: string    // hostname
   protected _hive: string;     // registry hive
@@ -379,7 +379,7 @@ export class Registry {
    * @member {Registry} Registry#parent
    */
   get parent(): Registry {
-    const i = this._key.lastIndexOf('\\')
+    var i = this._key.lastIndexOf('\\')
     return new Registry({
       host: this.host,
       hive: this.hive,
@@ -491,12 +491,11 @@ static readonly DEFAULT_VALUE = DEFAULT_VALUE;
  * @returns {Registry} this registry key object
  */
 values(cb: (err: Error | null, items?: RegistryItem[]) => void): this {
-  
-  if (typeof cb !== 'function') {
+
+  if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
-  }
-  // console.log(`Registry.prototype.values: ${this.utf8}, ${this.path}`);
-  var args = [ 'QUERY', this.utf8 ? `"${this.path}"`: this.path ];
+
+  var args = [ 'QUERY', `"${this.path}"`];
 
   pushArch(args, this.arch);
 
@@ -578,8 +577,8 @@ keys(cb: (err: Error | null, items?: Registry[]) => void): this {
 
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
-  // console.log(`Registry.prototype.keys: ${this.utf8}, ${this.path}`);
-  var args = [ 'QUERY', this.utf8 ? `"${this.path}"`: this.path ];
+
+  var args = [ 'QUERY', this.path ];
 
   pushArch(args, this.arch);
 
@@ -667,7 +666,7 @@ get(name: string, cb: (err: Error | null, item?: RegistryItem) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['QUERY', this.path];
+  var args = [ 'QUERY', `"${this.path}"`];
   if (name == '')
     args.push('/ve');
   else
@@ -757,7 +756,7 @@ set(name: string, type: string, value: string, cb: (err: Error | null, _ignored_
   if (REG_TYPES.indexOf(type) == -1)
     throw Error('illegal type specified.');
 
-  var args = ['ADD', this.path];
+  var args = ['ADD', `"${this.path}"`];
   if (name == '')
     args.push('/ve');
   else
@@ -814,7 +813,7 @@ remove (name: string, cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = name ? ['DELETE', this.path, '/f', '/v', name] : ['DELETE', this.path, '/f', '/ve'];
+  var args = name ? ['DELETE', `"${this.path}"`, '/f', '/v', name] : ['DELETE', `"${this.path}"`, '/f', '/ve'];
 
   pushArch(args, this.arch);
 
@@ -863,7 +862,7 @@ clear(cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['DELETE', this.path, '/f', '/va'];
+  var args = ['DELETE', `"${this.path}"`, '/f', '/va'];
 
   pushArch(args, this.arch);
 
@@ -919,13 +918,12 @@ erase(cb: (err: Error | null, _ignored_?: any) => void): this {
  * @param {ProcessUncleanExitError=} cb.err - error object or null if successful
  * @returns {Registry} this registry key object
  */
-destroy(cb: (err: Error | null, _ignored_?: any) => void, options?: any): this {
+destroy(cb: (err: Error | null, _ignored_?: any) => void): this {
 
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['DELETE', this.path, '/f'];
-  args = args.concat(options);
+  var args = ['DELETE', `"${this.path}"`, '/f'];
 
   pushArch(args, this.arch);
 
@@ -974,7 +972,7 @@ create(cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['ADD', this.path, '/f'];
+  var args = ['ADD', `"${this.path}"`, '/f'];
 
   pushArch(args, this.arch);
 

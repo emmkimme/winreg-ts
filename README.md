@@ -1,7 +1,33 @@
 #winreg-ts
 Basically, it is a raw migration of the original project https://github.com/fresc81/node-winreg to typescript.
-We even keep the code formatting to ease the comparaison.
-We just added utf8 support.
+We even keep the code formatting and design to ease the comparaison and do not introduce regressions.
+We just add utf8 support from https://github.com/eskibear/node-winreg-utf8
+
+
+# Typescript
+```
+import { Registry } from 'winreg-ts';
+
+const regKey = new Registry({
+    hive: Registry.HKCU,
+    key: '\\Software\\Microsoft\\Windows\\CurrentVersion',
+    utf8: true
+});
+```
+
+# Javascript
+## Breaking change
+### Before (winreg)
+```
+  // Registry class
+  var Registry = require('winreg');
+```
+### After (winreg-ts)
+```
+  // Registry class
+  var Registry = require('winreg-ts').Registry;
+```
+
 
 # MIT License
 

@@ -4,7 +4,8 @@ Array.prototype.someNewMethod = function() {};
 
 var test  = require('unit.js');
 
-describe('winreg', function(){
+function testUTF8(utf8) {
+describe(`winreg UTF8=${utf8}`, function(){
   
   it('running on Windows', function () {
     
@@ -14,7 +15,7 @@ describe('winreg', function(){
   });
   
   // Registry class
-  var Registry = require(__dirname+'/../../lib/registry.js');
+  var Registry = require(__dirname+'/../../lib/registry.js').Registry;
   
   it('Registry is a class', function () {
     
@@ -26,7 +27,8 @@ describe('winreg', function(){
   // create a uniqe registry key in HKCU to test in
   var regKey = new Registry({
     hive: Registry.HKCU,
-    key:  '\\Software\\AAA_' + new Date().toISOString()
+    key:  '\\Software\\AAA_' + new Date().toISOString(),
+    utf8
   });
   
   it('regKey is instance of Registry', function(){
@@ -39,7 +41,8 @@ describe('winreg', function(){
   // a key that has subkeys in it
   var softwareKey = new Registry({
     hive: Registry.HKCU,
-    key:  '\\Software'
+    key:  '\\Software',
+    utf8
   });
   
   it('softwareKey is instance of Registry', function(){
@@ -379,3 +382,8 @@ describe('winreg', function(){
   }); // end - describe Registry
 
 }); // end - describe winreg
+}
+
+testUTF8(undefined)
+testUTF8(false)
+testUTF8(true)

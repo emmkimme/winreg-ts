@@ -4,11 +4,6 @@
         /* Basic Options */
         "module": "commonjs",
         "target": "es6",
-        "lib": [
-            "dom",
-            "esnext",
-            "esnext.asynciterable"
-        ],
 
         /* Module Resolution Options */
         "moduleResolution": "node",
