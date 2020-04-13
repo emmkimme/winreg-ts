@@ -33,6 +33,6 @@
     "clean": "del-cli ./lib ./build ./dist",
     "build": "tsc",
     "test": "mocha test",
-    "publication": "npm publish ./ --registry https://registry.npmjs.org"
+    "publish": "npm publish ./ --registry https://registry.npmjs.org"
   }
 }
