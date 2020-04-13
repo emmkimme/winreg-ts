@@ -1,6 +1,6 @@
 {
   "name": "winreg-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "types": "lib/registry.d.ts",
   "main": "lib/registry.js",
   "description": "provides access to the windows registry through the REG tool",

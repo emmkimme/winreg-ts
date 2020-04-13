@@ -500,7 +500,8 @@ values(cb: (err: Error | null, items?: RegistryItem[]) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = [ 'QUERY', `"${this.path}"`];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = [ 'QUERY', pathArg];
 
   pushArch(args, this.arch);
 
@@ -583,7 +584,8 @@ keys(cb: (err: Error | null, items?: Registry[]) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = [ 'QUERY', this.path ];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = [ 'QUERY', pathArg];
 
   pushArch(args, this.arch);
 
@@ -671,7 +673,8 @@ get(name: string, cb: (err: Error | null, item?: RegistryItem) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = [ 'QUERY', `"${this.path}"`];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = [ 'QUERY', pathArg];
   if (name == '')
     args.push('/ve');
   else
@@ -761,7 +764,8 @@ set(name: string, type: string, value: string, cb: (err: Error | null, _ignored_
   if (REG_TYPES.indexOf(type) == -1)
     throw Error('illegal type specified.');
 
-  var args = ['ADD', `"${this.path}"`];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = ['ADD', pathArg];
   if (name == '')
     args.push('/ve');
   else
@@ -818,7 +822,8 @@ remove (name: string, cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = name ? ['DELETE', `"${this.path}"`, '/f', '/v', name] : ['DELETE', `"${this.path}"`, '/f', '/ve'];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = name ? ['DELETE', pathArg, '/f', '/v', name] : ['DELETE', pathArg, '/f', '/ve'];
 
   pushArch(args, this.arch);
 
@@ -867,7 +872,8 @@ clear(cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['DELETE', `"${this.path}"`, '/f', '/va'];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = ['DELETE', pathArg, '/f', '/va'];
 
   pushArch(args, this.arch);
 
@@ -928,7 +934,8 @@ destroy(cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['DELETE', `"${this.path}"`, '/f'];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = ['DELETE', pathArg, '/f'];
 
   pushArch(args, this.arch);
 
@@ -977,7 +984,8 @@ create(cb: (err: Error | null, _ignored_?: any) => void): this {
   if (typeof cb !== 'function')
     throw new TypeError('must specify a callback');
 
-  var args = ['ADD', `"${this.path}"`, '/f'];
+  const pathArg = this.utf8 ? `"${this.path}"` : this.path;
+  var args = ['ADD', pathArg, '/f'];
 
   pushArch(args, this.arch);
 

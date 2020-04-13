@@ -379,6 +379,32 @@ describe(`winreg UTF8=${utf8}`, function(){
       
     }); // end - describe destroy()
   
+    describe('HKLM / HKCU', function () {
+      
+      it('HKLM', function (done) {
+        const regKey = new Registry({
+          hive: Registry.HKLM,
+          key: '\\Software\\Microsoft\\Windows\\CurrentVersion',
+          utf8
+        });
+        regKey.values((err, items) => {
+          done(err);
+        });
+      });
+      
+      it('HKCU', function (done) {
+        const regKey = new Registry({
+          hive: Registry.HKCU,
+          key: '\\Software\\Microsoft\\Windows\\CurrentVersion',
+          utf8
+        });
+        regKey.values((err, items) => {
+          done(err);
+        });
+      });
+      
+    }); // end - describe clear
+    
   }); // end - describe Registry
 
 }); // end - describe winreg
