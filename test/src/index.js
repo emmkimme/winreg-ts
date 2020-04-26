@@ -167,6 +167,17 @@ describe(`winreg UTF8=${utf8}`, function(){
         
       });
       
+      it('can set a default value', function (done) {
+        
+        regKey.set(Registry.DEFAULT_VALUE, Registry.REG_SZ, 'SomeDefaultValue', function (err) {
+          
+          if (err) throw err;
+          
+          done();
+          
+        });
+        
+      });
     }); // end - describe set
     
     describe('valueExists()', function (){
@@ -220,9 +231,22 @@ describe(`winreg UTF8=${utf8}`, function(){
           . hasProperty('value', 'SomeValue');
           
           done();
-          
         });
-        
+      });
+          
+      it('can get a default value', function (done) {
+      
+          regKey.get(Registry.DEFAULT_VALUE, function (err, item) {
+            
+            if (err) throw err;
+            
+            test.object(item)
+            . hasProperty('value', 'SomeDefaultValue');
+            
+            done();
+            
+          });
+            
       });
       
     }); // end - describe get
@@ -285,6 +309,17 @@ describe(`winreg UTF8=${utf8}`, function(){
         
       });
       
+      it('can remove a default value', function (done) {
+        
+        regKey.remove(Registry.DEFAULT_VALUE, function (err) {
+          
+          if (err) throw err;
+          
+          done();
+          
+        });
+        
+      });
     }); // end - describe remove
     
     describe('keys()', function (){
