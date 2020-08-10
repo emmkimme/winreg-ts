@@ -1,6 +1,6 @@
 {
   "name": "winreg-ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "types": "lib/registry.d.ts",
   "main": "lib/registry.js",
   "description": "provides access to the windows registry through the REG tool",
@@ -24,15 +24,15 @@
   },
   "devDependencies": {
     "del": "^5.1.0",
-    "del-cli": "^3.0.0",
-    "mocha": "^7.1.1",
-    "typescript": "^3.8.3",
+    "del-cli": "^3.0.1",
+    "mocha": "^8.1.1",
+    "typescript": "^3.9.7",
     "unit.js": "^2.1.1"
   },
   "scripts": {
     "clean": "del-cli ./lib ./build ./dist",
     "build": "tsc",
-    "test": "mocha test",
+    "test": "mocha test/src",
     "publish": "npm publish ./ --registry https://registry.npmjs.org"
   }
 }
